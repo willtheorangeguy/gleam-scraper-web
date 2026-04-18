@@ -5,7 +5,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    versioning-strategy: "auto"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
@@ -15,7 +14,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    versioning-strategy: "auto"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
@@ -25,7 +23,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    versioning-strategy: "auto"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
