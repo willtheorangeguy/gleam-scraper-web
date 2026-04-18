@@ -1,0 +1,16 @@
+{
+  "name": "gleam-web-app",
+  "version": "1.0.0",
+  "description": "Self-hostable web UI for listing Gleam competitions, backed by the `gleam-scraper` project as a dependency.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

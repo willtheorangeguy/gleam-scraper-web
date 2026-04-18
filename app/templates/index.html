@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gleam Competitions</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <h1>Gleam Competitions</h1>
+            <p>Mode: <code>{{ scraper_mode }}</code></p>
+            <form action="/refresh" method="post">
+                <button type="submit">Refresh competitions</button>
+            </form>
+        </header>
+
+        <section class="search-section">
+            <form method="get" action="/">
+                <label for="q">Search</label>
+                <input id="q" name="q" type="text" value="{{ query }}" placeholder="Search title or description">
+                <button type="submit">Apply</button>
+            </form>
+            <p>{{ count }} shown of {{ total_count }} total</p>
+        </section>
+
+        <section class="results-section">
+            {% if competitions %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for competition in competitions %}
+                        <tr>
+                            <td>{{ competition.title }}</td>
+                            <td>{{ competition.description }}</td>
+                            <td>
+                                <a href="{{ competition.url }}" target="_blank" rel="noopener noreferrer">
+                                    Open
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No competitions found for the current query.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
+
