@@ -34,15 +34,28 @@ jobs:
         run: |
           python -m playwright install chromium firefox
 
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+
       - name: Start FastAPI server
         run: |
           nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > server.log 2>&1 &
-          sleep 2
-          if ! curl -f http://localhost:8000; then
-            echo "Server failed to start"
-            cat server.log
-            exit 1
-          fi
+          
+          # Wait for server to start with retries
+          for i in {1..30}; do
+            if curl -f http://localhost:8000 > /dev/null 2>&1; then
+              echo "Server is ready"
+              exit 0
+            fi
+            echo "Waiting for server... (attempt $i/30)"
+            sleep 1
+          done
+          
+          echo "Server failed to start after 30 seconds"
+          echo "=== Server Log ==="
+          cat server.log
+          exit 1
         env:
           PYTHONPATH: ${{ github.workspace }}
 
