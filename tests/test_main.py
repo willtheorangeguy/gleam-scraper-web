@@ -29,7 +29,9 @@ def test_index_page_renders(monkeypatch):
     monkeypatch.setattr(
         main,
         "list_competitions",
-        lambda **_: [Competition("Gamma Prize", "https://gleam.io/giveaways/CCC33", "")],
+        lambda **_: [
+            Competition("Gamma Prize", "https://gleam.io/giveaways/CCC33", "")
+        ],
     )
 
     with TestClient(main.app) as client:

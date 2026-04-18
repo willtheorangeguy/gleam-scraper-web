@@ -6,3 +6,8 @@ venv/
 .env
 data/
 
+# Playwright
+node_modules/
+playwright-report/
+test-results/
+.auth/

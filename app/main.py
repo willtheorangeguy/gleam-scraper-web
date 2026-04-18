@@ -26,7 +26,11 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
-app.mount("/static", StaticFiles(directory=str(Path(__file__).parent / "static")), name="static")
+app.mount(
+    "/static",
+    StaticFiles(directory=str(Path(__file__).parent / "static")),
+    name="static",
+)
 
 
 def _filter_competitions(
@@ -39,7 +43,8 @@ def _filter_competitions(
     return [
         competition
         for competition in competitions
-        if query in competition.title.lower() or query in competition.description.lower()
+        if query in competition.title.lower()
+        or query in competition.description.lower()
     ]
 
 
