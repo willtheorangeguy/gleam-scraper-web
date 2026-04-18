@@ -43,6 +43,8 @@ jobs:
 
       - name: Run tests with pytest
         run: pytest -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
 
   build:
     runs-on: ubuntu-latest

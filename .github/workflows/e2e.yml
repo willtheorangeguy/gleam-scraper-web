@@ -26,9 +26,13 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install Playwright
+      - name: Install Playwright browsers
         run: |
-          npx playwright install --with-deps
+          npx playwright install --with-deps chromium firefox
+
+      - name: Install Python Playwright
+        run: |
+          python -m playwright install chromium firefox
 
       - name: Start FastAPI server
         run: |
@@ -39,6 +43,8 @@ jobs:
             cat server.log
             exit 1
           fi
+        env:
+          PYTHONPATH: ${{ github.workspace }}
 
       - name: Run Playwright tests
         run: |
